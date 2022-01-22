@@ -30,7 +30,7 @@ const props = defineProps({
     default: () => 10
   },
   // add support for scrollTo
-  index: {
+  scrollToIndex: {
     type: Number,
     default: () => 0
   }
@@ -40,7 +40,7 @@ const root = ref<HTMLElement | null>(null)
 const pool = ref<any[]>([])
 const scrollHeight = computed(() => data.value.length * itemHeight.value)
 const dataRange = reactive({
-  start: props.index,
+  start: props.scrollToIndex,
   end: 0
 })
 

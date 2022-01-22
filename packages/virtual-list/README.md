@@ -1,11 +1,45 @@
-# Vue 3 + Typescript + Vite
+# 基于Vue3开发的虚拟滚动列表
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+安装
 
-## Recommended IDE Setup
+```bash
+npm i tp-virtual-list
+```
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+使用实例
 
-## Type Support For `.vue` Imports in TS
+```html
+<script setup>
+import VirtualList from 'tp-virtual-list'
+import 'tp-virtual-list/dist/style.css'
+import { ref } from 'vue';
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+const data = ref([])
+
+const arr = []
+for (let index = 0; index < 100000; index++) {
+  arr.push({
+    label: `item ${index}`,
+    value: index
+  })
+}
+data.value = arr
+</script>
+
+<template>
+  <VirtualList :data="data" style="height: 500px" :scrollToIndex="10000">
+    <template #default="{ item }">
+      <div>{{ item.label }}</div>
+    </template>
+  </VirtualList>
+</template>
+```
+
+属性
+
+| 属性名        | 类型   | 描述                           | 必须 | 默认值 |
+| ------------- | ------ | ------------------------------ | ---- | ------ |
+| data          | Array  | 列表数据                       | 是   |        |
+| itemHeight    | Number | 每行的高度                     | 否   | 50     |
+| buffer        | Number | 可视区域上下各多渲染多少条数据 | 否   | 10     |
+| scrollToIndex | Number | 默认滚动到第几条               | 否   | 0      |

@@ -1,0 +1,11 @@
+# 忽略目录
+.vscode
+node_modules
+src/
+public/
+
+# 忽略指定文件
+vite.config.js
+babel.config.js
+*.map
+tsconfig.json

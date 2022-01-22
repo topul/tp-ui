@@ -1,7 +1,9 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import VirtualList from './packages/VirtualList.vue'
+// import VirtualList from './packages/TpVirtualList.vue'
+import VirtualList from 'tp-virtual-list'
+import 'tp-virtual-list/dist/style.css'
 import { ref } from 'vue';
 
 const data = ref<Record<string, any>[]>([])
@@ -17,7 +19,7 @@ data.value = arr
 </script>
 
 <template>
-  <VirtualList :data="data" style="height: 500px" :index="10000">
+  <VirtualList :data="data" style="height: 500px" :scrollToIndex="10000">
     <template #default="{ item }">
       <div>{{ item.label }}</div>
     </template>

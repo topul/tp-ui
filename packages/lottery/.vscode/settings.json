@@ -1,6 +1,0 @@
-{
-    "eslint.packageManager": "yarn",
-    "prettier.disableLanguages": [],
-    "prettier.semi": false,
-    "prettier.singleQuote": true
-}
